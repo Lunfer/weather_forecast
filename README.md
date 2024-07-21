@@ -39,35 +39,36 @@ The Weather Forecast Application is a Flask-based web service designed to fetch,
    - `DATABASE_URL`: Database connection string (default is `sqlite:///weather.db`)
 
    **Create a .env file in the root directory with the following content:**
-   - `API_USERNAME`: Your Meteomatics API username
-   - `API_PASSWORD`: Your Meteomatics API password
+   - `API_USERNAME`: Your Meteomatics API username (you don't need to add it inside "" to make it work)
+   - `API_PASSWORD`: Your Meteomatics API password (you don't need to add it inside "" to make it work)
    
 
 4. **Run the application locally:**
    ```bash
+   pip install -r requirements.txt
    python app.py
 
 5. **Google Cloud Platform Deployment:**
 
-- Artifact Registry:
-   - Build a Docker image of the application.
-   - Tag the Docker image and push it to Google Cloud Artifact Registry
-      ```
-      docker build -t gcr.io/PROJECT_ID/weather-forecast-app
-      docker push gcr.io/PROJECT_ID/weather-forecast-app
-      ```
-   - Replace PROJECT_ID with your actual Google Cloud project ID.
+   - Artifact Registry:
+      - Build a Docker image of the application.
+      - Tag the Docker image and push it to Google Cloud Artifact Registry
+         ```
+         docker build -t gcr.io/PROJECT_ID/weather-forecast-app
+         docker push gcr.io/PROJECT_ID/weather-forecast-app
+         ```
+      - Replace PROJECT_ID with your actual Google Cloud project ID.
 
-- Cloud Run:
-   - Deploy the Docker image from Artifact Registry to Google Cloud Run:
-   ```
-   gcloud run deploy weather-forecast-app \
-  --image gcr.io/PROJECT_ID/weather-forecast-app \
-  --platform managed \
-  --region YOUR_REGION \
-  --allow-unauthenticated
-  ```
-   - Replace YOUR_REGION with the region where you want to deploy.
+   - Cloud Run:
+      - Deploy the Docker image from Artifact Registry to Google Cloud Run:
+      ```
+      gcloud run deploy weather-forecast-app \
+      --image gcr.io/PROJECT_ID/weather-forecast-app \
+      --platform managed \
+      --region YOUR_REGION \
+      --allow-unauthenticated
+      ```
+      - Replace YOUR_REGION with the region where you want to deploy.
 
 
 ## Access Flask-Admin
