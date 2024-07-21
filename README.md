@@ -25,10 +25,46 @@
 4. **Run the application locally:**
    ```bash
    python app.py
+## Access Flask-Admin
+
+Open a browser and navigate to `/admin/`.
 
 ## API Endpoints
 
-   - `/locations`: List all unique locations.
-   - `/latest_forecast`: Get the latest forecast for each location for every day.
-   - `/average_temp`: List the average temperature for the last 3 forecasts for each location for every day.
-   - `/top_locations`: Get the top n locations based on average temperature.
+### List Locations
+- **Endpoint:** `/locations`
+- **Method:** `GET`
+- **Description:** Returns a list of distinct locations.
+- **Response:** JSON array of locations.
+
+### Latest Forecast
+- **Endpoint:** `/latest_forecast`
+- **Method:** `GET`
+- **Description:** Returns the latest weather forecast for all locations.
+- **Response:** JSON array of forecasts.
+
+### Average Temperature
+- **Endpoint:** `/average_temp`
+- **Method:** `GET`
+- **Description:** Returns the average temperature for each location and date.
+- **Response:** JSON array of average temperatures.
+
+### Top Locations
+- **Endpoint:** `/top_locations`
+- **Method:** `GET`
+- **Query Parameter:** `n` (number of top locations to return)
+- **Description:** Returns the top `n` locations by average temperature.
+- **Response:** JSON array of top locations.
+
+## Troubleshooting Guide
+
+**Issue:** API endpoints return empty results.
+**Solution:** Verify that the database is correctly initialized and contains data. Check logs for any errors during data fetch or processing.
+
+**Issue:** Authentication issues with the weather API.
+**Solution:** Check that API credentials are correctly set in the `.env` file and match the credentials expected by the API.
+
+
+
+
+
