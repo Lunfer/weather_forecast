@@ -66,7 +66,6 @@ The Weather Forecast Application is a Flask-based web service designed to fetch,
   --platform managed \
   --region YOUR_REGION \
   --allow-unauthenticated
-
   ```
    - Replace YOUR_REGION with the region where you want to deploy.
 
