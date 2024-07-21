@@ -3,10 +3,12 @@
 import requests
 import logging
 from datetime import datetime, timedelta
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import scoped_session, sessionmaker
 from flask import Flask, jsonify, request
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 from sqlalchemy import func
-from database import SessionLocal, init_db
+from database import SessionLocal, init_db, engine
 from models import WeatherForecast
 from config import Config
 import os
@@ -76,6 +78,16 @@ def fetch_weather_data():
 
 app = Flask(__name__)
 
+# Setup Flask-Admin
+admin = Admin(app, name='Weather Forecast Admin', template_mode='bootstrap3')
+
+# Create a session factory
+session_factory = sessionmaker(bind=engine)
+# Create a scoped session
+scoped_session = scoped_session(session_factory)
+
+# Add views
+admin.add_view(ModelView(WeatherForecast, scoped_session))
 
 @app.route("/locations", methods=["GET"])
 def list_locations():
